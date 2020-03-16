@@ -1,3 +1,6 @@
+#' @title Evaluate real vs estimated network
+#' @param real The real network
+#' @param estimate The estimated network using \code{SBIC}
 comparison=function(real, estimate){
   ## M1 is the true net matrix
   ##Me is the estimated net matrix
@@ -18,5 +21,5 @@ comparison=function(real, estimate){
   if (select==0) {return(list(PSR=0, FDR=0))}
   PSR=real_select/real
   FDR=fause_select/select
-    return(list(PSR=PSR, FDR=FDR)) 
+    return(list(PSR=PSR, FDR=FDR))
 }

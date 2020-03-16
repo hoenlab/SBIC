@@ -2,7 +2,9 @@
 #' @title Using regression to find the network matrix
 #' @description INTERNAL METHOD: Use sparse regression methods to estimate the adjacency matrix
 #' @param data Data matrix
-#' @param lambda Vector of
+#' @param lambda Vector of hyperparameters
+#' @param P The prior adjacency matrix
+#' @return An initial matrix
 addition=function(data,lambda, P){
   p=dim(data)[2]
   nlambda=length(lambda)
@@ -31,6 +33,11 @@ addition=function(data,lambda, P){
   web=unique(web)
   return(web)
 }
+
+#' @title Update prior network graph with data and remove edges if necessary
+#' @param data Data to be input
+#' @param lambda A vector of hyperparameters
+#' @param P A prior network graph
 deletion=function(data,lambda,P){
   a=1*(P!=0)
   #b=(a+1)%%2
@@ -71,7 +78,7 @@ arr[, , i]=beta
 #' @description For a given prior graph, use the two step algorithm (including edge enrichment)
 #'   and pruning) to construct the model pool
 #' @author Jie Zhou
-#' @usage mdelSet(data, lambda, P)
+#' @usage modelSet(data, lambda, P)
 #' @param data An \code{n x p} data frame
 #' @param lambda Tuning parameter vector
 #' @param P Prior adjacency matrix
@@ -85,7 +92,6 @@ arr[, , i]=beta
 #'  # P <- d$priornetwork
 #'  # lambda <- exp(seq(-5,5, length = 50))
 #'  # pool = modelSet(data = data, lambda = lambda, P = P)
-#'  @export
 
 modelSet=function(data,lambda,P){
   ##P is the standized  prior information matrix

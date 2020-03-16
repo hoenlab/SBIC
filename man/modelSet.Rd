@@ -4,7 +4,7 @@
 \alias{modelSet}
 \title{Construct the model pool based on a two-step algorithm}
 \usage{
-mdelSet(data, lambda, P)
+modelSet(data, lambda, P)
 }
 \arguments{
 \item{data}{An \code{n x p} data frame}
@@ -29,7 +29,6 @@ For a given prior graph, use the two step algorithm (including edge enrichment)
  # P <- d$priornetwork
  # lambda <- exp(seq(-5,5, length = 50))
  # pool = modelSet(data = data, lambda = lambda, P = P)
- @export
 }
 \author{
 Jie Zhou

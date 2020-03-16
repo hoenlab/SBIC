@@ -16,6 +16,7 @@
 #'   \item{prob1}{the density of edge in prior graph}
 #'   \item{prob2}{the discrepancy rate between true and prior edge density}
 #'   \item{ka}{the diagonal entry in real precision matrix}
+#' @importFrom stats rbinom
 #' @examples
 #' # set.seed(1)
 #' # d=simulate(p=10,n=100,prob1=0.2, prob2=0.1, ka=4)

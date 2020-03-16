@@ -1,6 +1,6 @@
 Package: SBIC
 Title: Structural Bayesian Information Criterion for model selection in network models
-Version: 0.0.0.9000
+Version: 0.0.1
 Authors@R: 
     person(given = "Jie", 
           family = "Zhou",
@@ -11,7 +11,7 @@ Authors@R:
            role = c("aut", "cre"),
            email = "Quang.P.Nguyen.GR@dartmouth.edu",
            comment = c(ORCID = "0000-0002-2072-3279"))
-Description: Our algorithm includes the following two parts. In the rst part we propose a model selection criterion called structural Bayesian information criterion
+Description: Our algorithm includes the following two parts. In the first part we propose a model selection criterion called structural Bayesian information criterion
   (SBIC) in which the prior structure is modeled and incorporated into the Bayesian information criterion (BIC). It is shown
   that the popular extended BIC (EBIC) is a special case of SBIC. In second part we propose a two-step algorithm to construct
   the candidate model pool. The algorithm is data-driven and the prior structure is embedded into the candidate model

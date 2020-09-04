@@ -1,6 +1,6 @@
 Package: SBIC
 Title: Structural Bayesian Information Criterion for model selection in network models
-Version: 0.0.3
+Version: 0.1.0
 Authors@R: 
     person(given = "Jie", 
           family = "Zhou",

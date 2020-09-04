@@ -1,17 +1,19 @@
-##Using regression to find the network matrix
-#' @title Using regression to find the network matrix
-#' @description INTERNAL METHOD: Use sparse regression methods to estimate the adjacency matrix
-#' @param data Data matrix
-#' @param lambda Vector of hyperparameters
-#' @param P The prior adjacency matrix
-#' @return An initial matrix
+#' @title Enrichment step for constructing the model pool 
+#' @description This is the esnrichment step in the two-step algorithm to construct the model pool (internal use only)  
+#' @author Jie Zhou 
+#' @param data An \code{n} by \code{p} matrix of observations 
+#' @param lambda Vector of tuning parameter 
+#' @param P Prior adjacency matrix  
+#' @return 
+#'   A list of model objects   
+#' @import glmnet 
 addition=function(data,lambda, P){
   p=dim(data)[2]
   nlambda=length(lambda)
   invP=matrix(1,nrow = p,ncol = p)-P
   n=dim(data)[1]
   arr=array(0,dim = c(p,nlambda,p))
-
+  
     for (i in 1:p) {
       beta=matrix(0,nrow = (p-1), ncol = nlambda)
       x=as.matrix(data[,-i])
@@ -34,10 +36,15 @@ addition=function(data,lambda, P){
   return(web)
 }
 
-#' @title Update prior network graph with data and remove edges if necessary
-#' @param data Data to be input
-#' @param lambda A vector of hyperparameters
-#' @param P A prior network graph
+#' @title Pruning step for constructing the model pool 
+#' @description This is the pruning step in the two-step algorithm to construct the model pool (internal use only)  
+#' @author Jie Zhou 
+#' @param data An \code{n} by \code{p} matrix of observations 
+#' @param lambda Vector of tuning parameter 
+#' @param P Prior adjacency matrix  
+#' @return 
+#'   A list of model objects   
+#' @import glmnet 
 deletion=function(data,lambda,P){
   a=1*(P!=0)
   #b=(a+1)%%2
@@ -65,35 +72,42 @@ arr[, , i]=beta
   for (j in 1:nlambda) {
     web[[j]]=arr[,j,]+t(arr[,j,])
     web[[j]]=ifelse(abs(web[[j]])<=10^(-1),0,1)
-    if (any(diag(web[[j]])==0))
+    if (any(diag(web[[j]])==0)) 
       stop("got zero")
   }
   web=unique(web)
   return(web)
 }
 
-#' @name modelSet
-#' @aliases modelSet
-#' @title Construct the model pool based on a two-step algorithm
-#' @description For a given prior graph, use the two step algorithm (including edge enrichment)
-#'   and pruning) to construct the model pool
-#' @author Jie Zhou
-#' @usage modelSet(data, lambda, P)
-#' @param data An \code{n x p} data frame
-#' @param lambda Tuning parameter vector
-#' @param P Prior adjacency matrix
-#' @return \item{webb}{A list of all the candidate models in the model pool. Each model is represented by a \code{p x p}
-#'   adjacency matrix}
-#' @examples
-#'  # library("glmnet")
-#'  # set.seed(1)
-#'  # d <- simulate(p = 10, n = 100, prob1 = 0.1, prob2 = 0.2, ka = 4)
-#'  # data <- d$data
-#'  # P <- d$priornetwork
-#'  # lambda <- exp(seq(-5,5, length = 50))
-#'  # pool = modelSet(data = data, lambda = lambda, P = P)
 
-modelSet=function(data,lambda,P){
+#' @name modelset
+#' @aliases modelset
+#' @title Construct model pool using the two-step algorithm 
+#' @description For a given prior graph, the two-step algorithm, including edge enrichment and pruning, 
+#'   is used to construct the model pool
+#' @author Jie Zhou  
+#' 
+#' @param data A \code{n} by \code{p} data frame of observations 
+#' @param lambda Tuning parameter vector 
+#' @param P Prior adjacency matrix
+#'
+#' @return
+#'   A list including all the candidate models in the model pool. 
+#'   Each model is represented by a \code{p} by \code{p} adjacency matrix
+
+#' 
+#' @examples
+#'   set.seed(1)
+#'   d=simulate(n=100, p=100, m1 = 100, m2 = 30)
+#'   data=d$data
+#'   P=d$priornetwork
+#'   lambda=exp(seq(-5,5,length=100))
+#'   candidates=modelset(data=data,lambda=lambda, P=P)
+
+#' @import glmnet 
+#' @export
+#' 
+modelset=function(data,lambda,P){
   ##P is the standized  prior information matrix
   P=ifelse(abs(P)==0,0,1)
   p=ncol(data)
@@ -102,7 +116,7 @@ modelSet=function(data,lambda,P){
   inv=matrix(1,nrow = p,ncol = p)-P
   web1=addition(data=data,lambda = lambda,P = P)
   web=vector("list",length = length(web1))
-  for (i in 1:length(web1)){
+  for (i in 1:length(web1)){ 
     web[[i]]=deletion(data = data,lambda = lambda,P=web1[[i]])
   }
   num=sum(lengths(web))+length(web1)+1
@@ -120,7 +134,7 @@ modelSet=function(data,lambda,P){
   }
   webb[(sum(lengths(web))+1):(sum(lengths(web))+length(web1))]=web1
   webb[num]=list(P)
-
-  webb=unique(webb)
-  return(webb)
+  
+  candidates=unique(webb)
+  return(candidates)
 }

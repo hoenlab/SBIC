@@ -1,44 +1,68 @@
 #' @name simulate
 #' @aliases simulate
-#' @author Jie Zhou
-#' @title Randomly generate adjacent matrices for data simulation purposes
-#' @description For a given edge density, first generate an adjacency matrix \code{P} of a graph.
-#'   Based on \code{P}, generate multinomial data with mean 0 and a given precision matrix.
-#' @usage simulate(p, n, prob1, prob2, ka)
-#' @param p Number of vertices in the graph
+#' @title Randomly generate a adjacency matrix based on which to simulate data 
+#' @description According to a given edge density, first generate the adjacency matrix P of a graph. 
+#'   Based on P, the simulated multivariate normal data is generated with
+#'   mean zero and a specified given precision matrix
+#' @author Jie Zhou  
 #' @param n Sample size
-#' @param prob1 The densitiy of the edge in the prior graph
-#' @param prob2 The discrepancy rate between true and prior edge density
-#' @param ka The diagonal entry in the true precision matrix
-#' @details The precision matrix has all off-diagonal entries to be 1 and the diagonal entries to be \code{ka}
-#' @return  A list including the simulated data, real adjacency matrix and a prior adjacency matrix.
-#'   \item{n}{sample size}
-#'   \item{prob1}{the density of edge in prior graph}
-#'   \item{prob2}{the discrepancy rate between true and prior edge density}
-#'   \item{ka}{the diagonal entry in real precision matrix}
-#' @importFrom stats rbinom
-#' @examples
-#' # set.seed(1)
-#' # d=simulate(p=10,n=100,prob1=0.2, prob2=0.1, ka=4)
-#' # d$data
-#' # d$realnetwork
-#' # d$priornetwork
+#' @param p The number of vertices in graph or the number of variables 
+#' @param m1 The number of edges in the true graph
+#' @param m2 The number of elements in adjacency matrix that stay in different states, 
+#'   i.e., 0 or 1, in true and prior graphs
+#'   
+#' @return 
+#'   A list including the simulated data, real adjacency matrix and a prior adjacency matrix
+#'   \item{data}{simulated data}
+#'   \item{realnetwork}{real adjacency matrix}
+#'   \item{priornetowrk}{prior adjacency matrix}
+#'   
+#' @examples 
+#'   set.seed(1)
+#'   d=simulate(n=100,p=200, m1=100, m2=30)
+#'   d$data
+#'   d$realnetwork
+#'   d$priornetwork
+#'   
 #' @export
-###generate the network matrix
-simulate=function(p, n, prob1, prob2, ka){
-prior_stru=matrix(rbinom(n=p^2, size = 1, prob = prob1), nrow = p, ncol = p)
-prior_stru[lower.tri(prior_stru)]=t(prior_stru)[lower.tri(prior_stru)]
-diag(prior_stru)=1
-###generate the prior network
-disturbance=matrix(rbinom(n=p^2, size = 1, prob = prob2),nrow = p, ncol = p)
-disturbance[lower.tri(disturbance)]=t(disturbance)[lower.tri(disturbance)]
-diag(disturbance)=0
-real_stru=(prior_stru+disturbance)%%2
-##real network and regression matrix
-realnetwork=real_stru
-diag(realnetwork)=ka
-cov=solve(realnetwork)
-mu=rep(0,p)
-data=MASS::mvrnorm(n=n, mu=mu, Sigma=cov)
- return(list(data=data, realnetwork=real_stru, priornetwork=prior_stru))
+#' @import MASS
+simulate=function(n,p,m1,m2){
+  real_stru=matrix(0, nrow = p, ncol = p)
+  real_stru[lower.tri(real_stru,diag = T)]=1
+  index=which(real_stru==0,arr.ind = T)
+  a=sample(1:nrow(index),m1, replace = F)
+  real_stru[index[a,]]=1
+  real_stru[lower.tri(real_stru,diag = T)]=0
+  real_stru=real_stru+t(real_stru)+diag(p)
+  distrubance=real_stru
+  distrubance[lower.tri(distrubance,diag = T)]=0
+  index1=which(distrubance==1,arr.ind = T)
+  distrubance=(distrubance+1)%%2
+  distrubance[lower.tri(distrubance,diag = T)]=0
+  index2=which(distrubance==1,arr.ind = T)
+  a=sample(1:nrow(index1),m2, replace = F)
+  b=sample(1:nrow(index2),m2, replace = F)
+  distrubance=matrix(0,nrow = p,ncol = p)
+  distrubance[index1[a,]]=1
+  distrubance[index2[b,]]=1
+  distrubance=distrubance+t(distrubance)
+  prior_stru=(real_stru+distrubance)%%2
+  diag(prior_stru)=1
+  
+  
+  # generate the symmetrical precision matrix
+  theta = matrix(rnorm(p^2), p)
+  theta[lower.tri(theta, diag = TRUE)] = 0
+  theta = theta + t(theta) + diag(p)
+  
+  # apply the reqired sparsity
+  theta = theta * real_stru
+  
+  # force it to be positive definite
+  eig=eigen(theta)$values
+  theta = theta - (min(eig)-0.1) * diag(p)
+  Sigma=solve(theta)
+  mu=rep(0,p)
+  data=MASS::mvrnorm(n,mu=mu,Sigma = Sigma)
+  return(list(data=data, realnetwork=real_stru, priornetwork=prior_stru))
 }

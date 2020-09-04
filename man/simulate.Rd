@@ -2,41 +2,38 @@
 % Please edit documentation in R/dataSimulate.R
 \name{simulate}
 \alias{simulate}
-\title{Randomly generate adjacent matrices for data simulation purposes}
+\title{Randomly generate a adjacency matrix based on which to simulate data}
 \usage{
-simulate(p, n, prob1, prob2, ka)
+simulate(n, p, m1, m2)
 }
 \arguments{
-\item{p}{Number of vertices in the graph}
-
 \item{n}{Sample size}
 
-\item{prob1}{The densitiy of the edge in the prior graph}
+\item{p}{The number of vertices in graph or the number of variables}
 
-\item{prob2}{The discrepancy rate between true and prior edge density}
+\item{m1}{The number of edges in the true graph}
 
-\item{ka}{The diagonal entry in the true precision matrix}
+\item{m2}{The number of elements in adjacency matrix that stay in different states, 
+i.e., 0 or 1, in true and prior graphs}
 }
 \value{
-A list including the simulated data, real adjacency matrix and a prior adjacency matrix.
-  \item{n}{sample size}
-  \item{prob1}{the density of edge in prior graph}
-  \item{prob2}{the discrepancy rate between true and prior edge density}
-  \item{ka}{the diagonal entry in real precision matrix}
+A list including the simulated data, real adjacency matrix and a prior adjacency matrix
+  \item{data}{simulated data}
+  \item{realnetwork}{real adjacency matrix}
+  \item{priornetowrk}{prior adjacency matrix}
 }
 \description{
-For a given edge density, first generate an adjacency matrix \code{P} of a graph.
-  Based on \code{P}, generate multinomial data with mean 0 and a given precision matrix.
-}
-\details{
-The precision matrix has all off-diagonal entries to be 1 and the diagonal entries to be \code{ka}
+According to a given edge density, first generate the adjacency matrix P of a graph. 
+  Based on P, the simulated multivariate normal data is generated with
+  mean zero and a specified given precision matrix
 }
 \examples{
-# set.seed(1)
-# d=simulate(p=10,n=100,prob1=0.2, prob2=0.1, ka=4)
-# d$data
-# d$realnetwork
-# d$priornetwork
+  set.seed(1)
+  d=simulate(n=100,p=200, m1=100, m2=30)
+  d$data
+  d$realnetwork
+  d$priornetwork
+  
 }
 \author{
 Jie Zhou

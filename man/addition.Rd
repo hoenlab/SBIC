@@ -2,20 +2,23 @@
 % Please edit documentation in R/candidateset.R
 \name{addition}
 \alias{addition}
-\title{Using regression to find the network matrix}
+\title{Enrichment step for constructing the model pool}
 \usage{
 addition(data, lambda, P)
 }
 \arguments{
-\item{data}{Data matrix}
+\item{data}{An \code{n} by \code{p} matrix of observations}
 
-\item{lambda}{Vector of hyperparameters}
+\item{lambda}{Vector of tuning parameter}
 
-\item{P}{The prior adjacency matrix}
+\item{P}{Prior adjacency matrix}
 }
 \value{
-An initial matrix
+A list of model objects
 }
 \description{
-INTERNAL METHOD: Use sparse regression methods to estimate the adjacency matrix
+This is the esnrichment step in the two-step algorithm to construct the model pool (internal use only)
+}
+\author{
+Jie Zhou
 }

@@ -2,31 +2,32 @@
 % Please edit documentation in R/mle.R
 \name{mle}
 \alias{mle}
-\title{Estimate the precision matrix for multinormal distribution with given adjacency matrix}
+\title{Estimate the precision matrix for multivariate normal distribution with given adjacency matrix using maximum likelihood}
 \usage{
 mle(data, priori)
 }
 \arguments{
-\item{data}{An \code{n} by \code{p} matrix of observations}
+\item{data}{An \code{n} by \code{p} dataframe representing the observations}
 
-\item{priori}{A \code{p} by \code{p} adjacency matrix of the prior network}
+\item{priori}{A \code{p} by \code{p} matrix representing the given adjacency matrix}
 }
 \value{
-A \code{p} by \code{p} matrix of the estimated maximum likelihood precision matrix
+Returns a \code{p} by \code{p} matrix estimate of the precision matrix
 }
 \description{
-Estimate the precision matrix for multinormal distribution with given adjacency matrix
+This function find the maximum likelihood estimate of the 
+  precision matrix with given adjacency matrix for multivariate normal distribution.
 }
 \details{
-The methods  are based on the relationship between precision matrix of
-  multinormal distribution and regression coefficients.
+The methods are based on the relationship between precision matrix of the 
+  multivariate normal distribution and regression coefficients.
 }
 \examples{
-# set.seed(1)
-# d=simulate(p=10,n=100, prob1 = 0.1, prob2 = 0.2,ka=4)
-# data=d$data
-# priori=d$realnetwork
-# precision=mle(data=data,priori=priori)
+  set.seed(1)
+  d=simulate(n=100,p=200, m1=100, m2=30)
+  data=d$data
+  priori=d$realnetwork
+  precision=mle(data=data,priori=priori)
 }
 \author{
 Jie Zhou

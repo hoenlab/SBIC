@@ -1,23 +1,28 @@
-##For a given network matrix, compute
-##the mle of precision matrix
 #' @name mle
 #' @aliases mle
-#' @title Estimate the precision matrix for multinormal distribution with given adjacency matrix
-#' @author Jie Zhou
-#' @usage mle(data, priori)
-#' @param data An \code{n} by \code{p} matrix of observations
-#' @param priori A \code{p} by \code{p} adjacency matrix of the prior network
-#' @return A \code{p} by \code{p} matrix of the estimated maximum likelihood precision matrix
-#' @details The methods  are based on the relationship between precision matrix of
-#'   multinormal distribution and regression coefficients.
-#' @examples
-#' # set.seed(1)
-#' # d=simulate(p=10,n=100, prob1 = 0.1, prob2 = 0.2,ka=4)
-#' # data=d$data
-#' # priori=d$realnetwork
-#' # precision=mle(data=data,priori=priori)
-#' @importFrom stats var lm
-#' @export
+#' @author Jie Zhou  
+#' @title Estimate the precision matrix for multivariate normal distribution with given adjacency matrix using maximum likelihood
+#' @description This function find the maximum likelihood estimate of the 
+#'   precision matrix with given adjacency matrix for multivariate normal distribution.
+#' 
+#' @param data An \code{n} by \code{p} dataframe representing the observations
+#' @param priori A \code{p} by \code{p} matrix representing the given adjacency matrix
+#' 
+#' @details The methods are based on the relationship between precision matrix of the 
+#'   multivariate normal distribution and regression coefficients.
+#' 
+#' @return 
+#'   Returns a \code{p} by \code{p} matrix estimate of the precision matrix 
+#'   
+#' @examples 
+#'   set.seed(1)
+#'   d=simulate(n=100,p=200, m1=100, m2=30)
+#'   data=d$data
+#'   priori=d$realnetwork
+#'   precision=mle(data=data,priori=priori)
+#' @importFrom stats lm rnorm var
+#' @export 
+
 mle=function(data,priori){
   priori=priori+t(priori)
   priori=ifelse(priori==0,0,1)

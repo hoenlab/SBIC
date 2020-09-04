@@ -2,17 +2,23 @@
 % Please edit documentation in R/candidateset.R
 \name{deletion}
 \alias{deletion}
-\title{Update prior network graph with data and remove edges if necessary}
+\title{Pruning step for constructing the model pool}
 \usage{
 deletion(data, lambda, P)
 }
 \arguments{
-\item{data}{Data to be input}
+\item{data}{An \code{n} by \code{p} matrix of observations}
 
-\item{lambda}{A vector of hyperparameters}
+\item{lambda}{Vector of tuning parameter}
 
-\item{P}{A prior network graph}
+\item{P}{Prior adjacency matrix}
+}
+\value{
+A list of model objects
 }
 \description{
-Update prior network graph with data and remove edges if necessary
+This is the pruning step in the two-step algorithm to construct the model pool (internal use only)
+}
+\author{
+Jie Zhou
 }

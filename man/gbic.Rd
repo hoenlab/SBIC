@@ -2,33 +2,35 @@
 % Please edit documentation in R/gbic.R
 \name{gbic}
 \alias{gbic}
-\title{SBIC criterion for Gaussian Graphical Model}
+\title{Structural Bayesian information criterion for multivariate normal data with a given graph structure}
 \usage{
-gbic(data, theta, tem, P)
+gbic(data, theta, prob, P)
 }
 \arguments{
-\item{data}{A data in matrix form of \code{n} observations and \code{p} variables}
+\item{data}{A \code{n} by \code{p} dataframe representing observations}
 
-\item{theta}{A \code{p} by \code{p} matrix representing the given graph structure}
+\item{theta}{The \code{p} by \code{p} matrix representing the given graph structure}
 
-\item{tem}{A temperature parameter involved in SBIC}
+\item{prob}{The expected error rate}
 
 \item{P}{The prior adjacency matrix}
 }
 \value{
-\item{gbic}{the value of gbic with given temperature parameter and prior adjacency matrix}
+The value of gbic with given temperature parameter and prior adjacency matrix
 }
 \description{
-This function
+This function estimates the novel structural Bayesian information criterion given the data and
+  a given graph structure
 }
 \examples{
- # set.seed(1)
- # d=simulate(p=10,n=100, prob1 = 0.1, prob2 = 0.2,ka=4)
- # data=d$data
- # P=d$priornetwork
- # theta=d$realnetwork
- # tem=0.5
- # index=sbic(data=data, theta=theta, tem=tem, P=P)
+  set.seed(1)
+  d=simulate(n=100, p=100, m1 = 100, m2 = 30)
+  data=d$data
+  P=d$priornetwork
+  theta=d$realnetwork
+  prob=0.15
+  index=gbic(data=data, theta=theta, prob=prob, P=P)
+
 }
 \author{
 Jie Zhou

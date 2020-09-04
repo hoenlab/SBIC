@@ -1,5 +1,5 @@
-#' @name gbic
-#' @aliases gbic
+#' @name sbic
+#' @aliases sbic
 #' @title Structural Bayesian information criterion for multivariate normal data with a given graph structure  
 #' @author Jie Zhou
 #' @description This function estimates the novel structural Bayesian information criterion given the data and
@@ -10,7 +10,7 @@
 #' @param P The prior adjacency matrix  
 #' 
 #' @return 
-#'  The value of gbic with given temperature parameter and prior adjacency matrix  
+#'  The value of sbic with given temperature parameter and prior adjacency matrix  
 #' @examples 
 #'   set.seed(1)
 #'   d=simulate(n=100, p=100, m1 = 100, m2 = 30)
@@ -18,14 +18,14 @@
 #'   P=d$priornetwork
 #'   theta=d$realnetwork
 #'   prob=0.15
-#'   index=gbic(data=data, theta=theta, prob=prob, P=P)
+#'   index=sbic(data=data, theta=theta, prob=prob, P=P)
 #' 
 #' @importFrom stats lm rnorm var
 #' @export
 
 
 
-gbic=function(data,theta, prob,P){
+sbic=function(data,theta, prob,P){
   n=nrow(data)
   p=ncol(data)
   tem=log(p)/((log(1/prob-1)))
@@ -43,6 +43,6 @@ gbic=function(data,theta, prob,P){
   z1=as.matrix(z1)
   bic=-2*l+d*log(n)
   bolz=log(p)*sum(z1)/tem
-  gbic=bic+bolz
-  return(gbic=gbic)
+  sbic=bic+bolz
+  return(sbic=sbic)
 }

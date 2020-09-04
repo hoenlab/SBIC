@@ -41,15 +41,6 @@ This is a basic example which shows you how to solve a common problem:
 ```r
 library(SBIC)  
 library(network) # for visualization 
-#> network: Classes for Relational Data
-#> Version 1.16.0 created on 2019-11-30.
-#> copyright (c) 2005, Carter T. Butts, University of California-Irvine
-#>                     Mark S. Handcock, University of California -- Los Angeles
-#>                     David R. Hunter, Penn State University
-#>                     Martina Morris, University of Washington
-#>                     Skye Bender-deMoll, University of Washington
-#>  For citation information, type citation("network").
-#>  Type help("network-package") to get started.
 # simulate data using the incorporated simulate function  
 p <- 200
 m1 <- 100
@@ -91,10 +82,10 @@ print("Comparing estimated model with the real network")
 #> [1] "Comparing estimated model with the real network"
 comparison(real = real, estimate = model$networkhat)
 #> $PSR
-#> [1] 0.41
+#> [1] 0.27
 #> 
 #> $FDR
-#> [1] 0.474359
+#> [1] 0.1290323
 print("Comparing the prior network with the real network")
 #> [1] "Comparing the prior network with the real network"
 comparison(real = real, estimate = priori)

@@ -59,7 +59,7 @@ priori<- d$priornetwork
 
 Compare between 
 We can visualize the networks  
-```{r visualize_networks}
+```{r visualize_networks, width = 10, height = 10}
 prior_net <- network(priori)
 real_net <- network(real)
 par(mfrow = c(1,2))

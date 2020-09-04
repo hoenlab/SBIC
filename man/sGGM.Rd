@@ -24,6 +24,7 @@ A list of objects containing:
 Select the model based on the SBIC criterion and the two-step algorithm
 }
 \examples{
+\dontrun{
    set.seed(1)
    m1 = 100
    m2 = 30
@@ -42,6 +43,7 @@ Select the model based on the SBIC criterion and the two-step algorithm
    # compare the final network and the true network 
    result$networkhat
    d$realnetwork
+}
 }
 \author{
 Jie Zhou

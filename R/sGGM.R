@@ -17,6 +17,7 @@
 #'   \item{candidates}{The model pool}
 #' 
 #' @examples 
+#' \dontrun{
 #'    set.seed(1)
 #'    m1 = 100
 #'    m2 = 30
@@ -35,6 +36,7 @@
 #'    # compare the final network and the true network 
 #'    result$networkhat
 #'    d$realnetwork
+#' }
 #' @export
 
 sggm=function(data,lambda,M,prob){

@@ -1,30 +1,29 @@
-Package: SBIC
-Title: Structural Bayesian Information Criterion for model selection in network models
+Package: SBICgraph
+Title: Structural Bayesian Information Criterion for Model Selection in Network Models
 Version: 0.1.0
 Authors@R: 
+    c(person(given = "Quang",
+           family = "Nguyen",
+           role = c("cre", "aut"),
+           email = "Quang.P.Nguyen.GR@dartmouth.edu",
+           comment = c(ORCID = "0000-0002-2072-3279")),
     person(given = "Jie", 
           family = "Zhou",
-          role = c("aut", "cre"),
-          email = "Jie.Zhou-2@dartmouth.edu")
-    person(given = "Quang",
-           family = "Nguyen",
-           role = c("aut", "cre"),
-           email = "Quang.P.Nguyen.GR@dartmouth.edu",
-           comment = c(ORCID = "0000-0002-2072-3279"))
+          role = c("aut"),
+          email = "Jie.Zhou-2@dartmouth.edu"),
     person(given = "Anne",
           family = "Hoen",
-          role = c("cre"),
-          email = "Anne.G.Hoen@dartmouth.edu")
+          role = c("aut"),
+          email = "Anne.G.Hoen@dartmouth.edu"),
     person(given = "Jiang",
           family = "Gui",
-          role = c("cre"),
-          email = "Jiang.Gui@dartmouth.edu")
-Description: Our algorithm includes the following two parts. In the first part we propose a model selection criterion called structural Bayesian information criterion
-  (SBIC) in which the prior structure is modeled and incorporated into the Bayesian information criterion (BIC). It is shown
-  that the popular extended BIC (EBIC) is a special case of SBIC. In second part we propose a two-step algorithm to construct
-  the candidate model pool. The algorithm is data-driven and the prior structure is embedded into the candidate model
-  automatically.
-License: file LICENSE
+          role = c("aut"),
+          email = "Jiang.Gui@dartmouth.edu"))
+Description: This is the implementation of the novel structural Bayesian information criterion in which 
+   the prior structure is modeled and incorporated into the Bayesian information criterion framework. Additionally, we also provide
+   the implementation of a two-step algorithm to generate the candidate model pool. The algorithm is data-driven and the prior structure is embedded into the candidate model
+   automatically.
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Imports:

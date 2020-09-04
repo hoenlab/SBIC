@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
 ```
 
 ```{r setup}
-library(SBIC)
+library(SBICgraph)
 library(network) # for visualization 
 ```
 The function `comparison` allows for comparison between the true network and the estimated network from the SBIC method.  

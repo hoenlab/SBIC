@@ -22,12 +22,14 @@ For a given prior graph, the two-step algorithm, including edge enrichment and p
   is used to construct the model pool
 }
 \examples{
+\dontrun{
   set.seed(1)
   d=simulate(n=100, p=100, m1 = 100, m2 = 30)
   data=d$data
   P=d$priornetwork
   lambda=exp(seq(-5,5,length=100))
   candidates=modelset(data=data,lambda=lambda, P=P)
+}
 }
 \author{
 Jie Zhou

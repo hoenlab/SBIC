@@ -4,7 +4,14 @@ output: github_document
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
 # SBIC: Structural Bayesian Information Criterion (SBIC) for model selection in candidate models
 
 <!-- badges: start -->
@@ -37,19 +44,9 @@ remotes::install_github("hoenlab/SBIC")
 
 This is a basic example which shows you how to solve a common problem:
 
-
-```r
+```{r example}
 library(SBIC)  
 library(network) # for visualization 
-#> network: Classes for Relational Data
-#> Version 1.16.0 created on 2019-11-30.
-#> copyright (c) 2005, Carter T. Butts, University of California-Irvine
-#>                     Mark S. Handcock, University of California -- Los Angeles
-#>                     David R. Hunter, Penn State University
-#>                     Martina Morris, University of Washington
-#>                     Skye Bender-deMoll, University of Washington
-#>  For citation information, type citation("network").
-#>  Type help("network-package") to get started.
 # simulate data using the incorporated simulate function  
 p <- 200
 m1 <- 100
@@ -62,8 +59,7 @@ priori<- d$priornetwork
 
 Compare between 
 We can visualize the networks  
-
-```r
+```{r visualize_networks}
 prior_net <- network(priori)
 real_net <- network(real)
 par(mfrow = c(1,2))
@@ -71,11 +67,8 @@ plot(prior_net, main = "Prior network")
 plot(real_net, main = "Real network")
 ```
 
-<img src="man/figures/README-visualize_networks-1.png" title="plot of chunk visualize_networks" alt="plot of chunk visualize_networks" width="100%" />
-
 Then we can fit SBIC using one function
-
-```r
+```{r fit_models}
 lambda<- exp(seq(-10,10, length=30))
 # calculating the error rate from the number of edges in the true graph and the number of discordant pairs 
 r1 <- m2/m1
@@ -85,24 +78,11 @@ model<- sggm(data = data, lambda = lambda, M=priori, prob = r)
 ```
 
 Comparing the estimated network to the true and prior network. Our comparison function above calcualtes the Positive selection rate (PSR) and the False positive rate (FDR)
-
-```r
+```{r}
 print("Comparing estimated model with the real network")
-#> [1] "Comparing estimated model with the real network"
 comparison(real = real, estimate = model$networkhat)
-#> $PSR
-#> [1] 0.41
-#> 
-#> $FDR
-#> [1] 0.474359
 print("Comparing the prior network with the real network")
-#> [1] "Comparing the prior network with the real network"
 comparison(real = real, estimate = priori)
-#> $PSR
-#> [1] 0.7
-#> 
-#> $FDR
-#> [1] 0.3
 ```
 
 

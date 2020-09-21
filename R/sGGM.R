@@ -17,7 +17,7 @@
 #'   \item{candidates}{The model pool}
 #' 
 #' @examples 
-#' \dontrun{
+#' \donttest{
 #'    set.seed(1)
 #'    m1 = 100
 #'    m2 = 30

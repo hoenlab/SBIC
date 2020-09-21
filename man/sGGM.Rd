@@ -24,7 +24,7 @@ A list of objects containing:
 Select the model based on the SBIC criterion and the two-step algorithm
 }
 \examples{
-\dontrun{
+\donttest{
    set.seed(1)
    m1 = 100
    m2 = 30

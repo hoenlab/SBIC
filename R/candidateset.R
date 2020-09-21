@@ -97,7 +97,7 @@ arr[, , i]=beta
 
 #' 
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'   set.seed(1)
 #'   d=simulate(n=100, p=100, m1 = 100, m2 = 30)
 #'   data=d$data

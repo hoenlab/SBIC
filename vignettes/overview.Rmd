@@ -66,10 +66,12 @@ comparison(real = real, estimate = priori)
 We can also compare visualizations 
 ```{r}
 estimated_net <- network(model$networkhat)
+old_par <- par(mfrow = c(1,1))
 par(mfrow = c(1,3))
 plot(prior_net, main = "Prior Network")
 plot(real_net, main = "Real Network")
 plot(estimated_net, main = "Estimated Network")
+par(old_par)
 ```
 
 

@@ -1,5 +1,5 @@
 Package: SBICgraph
-Title: Structural Bayesian Information Criterion for Model Selection in Network Models
+Title: Structural Bayesian Information Criterion for Graphical Models
 Version: 0.1.0
 Authors@R: 
     c(person(given = "Quang",

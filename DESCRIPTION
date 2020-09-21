@@ -19,10 +19,9 @@ Authors@R:
           family = "Gui",
           role = c("aut"),
           email = "Jiang.Gui@dartmouth.edu"))
-Description: This is the implementation of the novel structural Bayesian information criterion in which 
-   the prior structure is modeled and incorporated into the Bayesian information criterion framework. Additionally, we also provide
-   the implementation of a two-step algorithm to generate the candidate model pool. The algorithm is data-driven and the prior structure is embedded into the candidate model
-   automatically.
+Description: This is the implementation of the novel structural Bayesian information criterion by Zhou, 2020 (under review).
+   In this method, the prior structure is modeled and incorporated into the Bayesian information criterion framework. 
+   Additionally, we also provide the implementation of a two-step algorithm to generate the candidate model pool.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true

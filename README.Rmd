@@ -17,15 +17,15 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![Build Status](https://travis-ci.org/hoenlab/SBICgraph.svg?branch=master)](https://travis-ci.org/hoenlab/SBICgraph)
+[![R-CMD-check](https://github.com/hoenlab/SBICgraph/workflows/R-CMD-check/badge.svg)](https://github.com/hoenlab/SBICgraph/actions)
 <!-- badges: end -->
 
 R-package implementation for the method presented in the paper "Information Enhanced Model Selection for Gaussian Graphical Model with Application to Metabolomic Data" by Zhou et al. 2020.
 
 **Abstract**  
-In light of the low signal-to-noise nature of many large biological data sets, we propose a novel method to learn the structure of association networks using a Gaussian graphical model combined with prior knowledge. Our strategy includes two parts. In the rst part, we propose a model selection criterion called structural Bayesian information criterion (SBIC), in which the prior structure is modeled and incorporated into the Bayesian information criterion (BIC). It is shown that the popular extended BIC (EBIC) is a special case of SBIC. In second part, we propose a two-step algorithm to construct the candidate model pool. The algorithm is data-driven and the prior structure is embedded into the candidate model automatically. Theoretical investigation
-shows that under some mild conditions SBIC is a consistent model selection criterion
+In light of the low signal-to-noise nature of many large biological data sets, we propose a novel method to learn the structure of association networks using a Gaussian graphical model combined with prior knowledge. Our strategy includes two parts. In the rst part, we propose a model selection criterion called structural Bayesian information criterion (SBIC), in which the prior structure is modeled and incorporated into the Bayesian information criterion (BIC). It is shown that the popular extended BIC (EBIC) is a special case of SBIC. In second part, we propose a two-step algorithm to construct the candidate model pool. The algorithm is data-driven and the prior structure is embedded into the candidate model automatically. Theoretical investigation shows that under some mild conditions SBIC is a consistent model selection criterion
 for the high-dimensional Gaussian graphical model. Simulation studies validate the superiority of
-the proposed algorithm over the existing ones and show the robustness to the model misspecication.
+the proposed algorithm over the existing ones and show the robustness to the model misspecification.
 Application to relative concentration data from infant feces collected from subjects enrolled
 in a large molecular epidemiological cohort study validates that prior knowledge on metabolic
 pathway involvement is a statistically signicant factor for the conditional dependence among
@@ -34,7 +34,7 @@ algorithm which have not been discovered by conventional pathway analysis. Some 
 have been widely recognized in the literature.   
 
 ## Installation  
-And the development version from [GitHub](https://github.com/) with:
+The development version from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("remotes")

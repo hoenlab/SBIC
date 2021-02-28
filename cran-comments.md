@@ -7,7 +7,8 @@ This is a resubmission. In this version I have:
 
 ## Test environments
 * local Windows 10 install, R 4.0.4 
-* Ubuntu 16.04.6 LTS (on travis-ci), R 4.0.2  
+* Ubuntu 18.04 LTS (on Github Actions) (devel, release, oldrel, R 3.5, R 3.4, R 3.3)  
+* MacOS Latest (on Github Actions) (devel, release)  
 * win-builder (devel and release)
 
 ## R CMD check results

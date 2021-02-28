@@ -17,6 +17,14 @@ knitr::opts_chunk$set(
 ```{r setup}
 library(SBICgraph)
 library(network) # for visualization 
+
+# to reset par
+resetPar <- function() {
+    dev.new()
+    op <- par(no.readonly = TRUE)
+    dev.off()
+    op
+}
 ```
 The function `comparison` allows for comparison between the true network and the estimated network from the SBIC method.  
 
@@ -29,6 +37,7 @@ d <- simulate(n=100, p=p, m1=m1, m2=m2)
 data<- d$data
 real<- d$realnetwork
 priori<- d$priornetwork
+
 ```
 We can visualize the networks  
 ```{r visualize_networks}
@@ -37,6 +46,7 @@ real_net <- network(real)
 par(mfrow = c(1,2))
 plot(prior_net, main = "Prior network")
 plot(real_net, main = "Real network")
+par(resetPar())
 ```
 
 We examine some features of both the prior network and the real network 
@@ -66,12 +76,11 @@ comparison(real = real, estimate = priori)
 We can also compare visualizations 
 ```{r}
 estimated_net <- network(model$networkhat)
-old_par <- par(mfrow = c(1,1))
 par(mfrow = c(1,3))
 plot(prior_net, main = "Prior Network")
 plot(real_net, main = "Real Network")
 plot(estimated_net, main = "Estimated Network")
-par(old_par)
+par(resetPar())
 ```
 
 

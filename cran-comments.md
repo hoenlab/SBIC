@@ -1,15 +1,16 @@
 ## Resubmission  
 This is a resubmission. In this version I have:  
+* Adjusted the link in the README file  
 * Re-ran all checks and incremented the version to 1.0.0  
 * Reduced the title length to 62 characters (Under the 65 character limit)  
 * Added `\donttest{}` in place of `dontrun{}` in places where examples take more than 5 seconds  
 * Made sure to change `par` options in vignettes back to user defaults  
 
 ## Test environments
-* local Windows 10 install, R 4.0.4 
-* Ubuntu 18.04 LTS (on Github Actions) (devel, release, oldrel, R 3.5, R 3.4, R 3.3)  
-* MacOS Latest (on Github Actions) (devel, release)  
-* win-builder (devel and release)
+* local Windows 10 install, R 4.0.4   
+* Ubuntu 18.04 LTS (on Github Actions) (devel, release, oldrel)    
+* MacOS Latest (on Github Actions) (devel, release)    
+* win-builder (devel and release)  
 
 ## R CMD check results
 There were no ERRORs or WARNINGs.  

@@ -15,8 +15,6 @@ knitr::opts_chunk$set(
 # SBIC: Structural Bayesian Information Criterion (SBIC) for model selection in candidate models
 
 <!-- badges: start -->
-[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
-[![Build Status](https://travis-ci.org/hoenlab/SBICgraph.svg?branch=master)](https://travis-ci.org/hoenlab/SBICgraph)
 [![R-CMD-check](https://github.com/hoenlab/SBICgraph/workflows/R-CMD-check/badge.svg)](https://github.com/hoenlab/SBICgraph/actions)
 <!-- badges: end -->
 

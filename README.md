@@ -5,10 +5,6 @@
 
 <!-- badges: start -->
 
-[![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
-[![Build
-Status](https://travis-ci.org/hoenlab/SBICgraph.svg?branch=master)](https://travis-ci.org/hoenlab/SBICgraph)
 [![R-CMD-check](https://github.com/hoenlab/SBICgraph/workflows/R-CMD-check/badge.svg)](https://github.com/hoenlab/SBICgraph/actions)
 <!-- badges: end -->
 
@@ -113,10 +109,10 @@ print("Comparing estimated model with the real network")
 #> [1] "Comparing estimated model with the real network"
 comparison(real = real, estimate = model$networkhat)
 #> $PSR
-#> [1] 0.3
+#> [1] 0.36
 #> 
 #> $FDR
-#> [1] 0.5384615
+#> [1] 0.4285714
 print("Comparing the prior network with the real network")
 #> [1] "Comparing the prior network with the real network"
 comparison(real = real, estimate = priori)
